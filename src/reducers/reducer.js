@@ -1,4 +1,4 @@
-import { ADD_TODO, TOGGLE_COMPLETED } from '../actions/actions';
+import { ADD_TODO, DELETE_TODO, TOGGLE_COMPLETED } from '../actions/actions';
 
 const initialState = {
   todoList: [
@@ -24,6 +24,10 @@ export default (state = initialState, action) => {
     case TOGGLE_COMPLETED:
       state.todoList[action.payload].completed = !state.todoList[action.payload].completed;
       return state;
+    case DELETE_TODO:
+      return {
+        ...state, todoList: [...state.todoList.splice(action.payload, 1)]
+      }
     default:
       return state;
   }

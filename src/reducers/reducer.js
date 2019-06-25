@@ -25,9 +25,7 @@ export default (state = initialState, action) => {
       state.todoList[action.payload].completed = !state.todoList[action.payload].completed;
       return state;
     case DELETE_TODO:
-      return {
-        ...state, todoList: [...state.todoList.splice(action.payload, 1)]
-      }
+      return { ...state, todoList: [...state.todoList.filter(element => element.id !== action.payload)] }
     default:
       return state;
   }
